@@ -12,11 +12,6 @@ public class TodoController {
 
     @Autowired
     private TodoService service;
-
-    @GetMapping(value = "/todo")
-    public Iterable<TodoEntity> list(){
-        return this.service.list();
-    }
     
     @PostMapping(value = "/todo")
     public TodoEntity save(@RequestBody TodoEntity todo){
@@ -32,7 +27,7 @@ public class TodoController {
     }
 
     @DeleteMapping(value = "/todo/{id}")
-    public void delete(@PathVariable("id")Long id){
+    public void delete(@PathVariable("id")String id){
         this.service.delete(id);
     }
 }

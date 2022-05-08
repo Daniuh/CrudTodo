@@ -1,9 +1,8 @@
 package co.com.sofka.crud.controllers;
 
+import co.com.sofka.crud.dtos.ListDTO;
 import co.com.sofka.crud.entities.ListEntity;
-import co.com.sofka.crud.entities.TodoEntity;
 import co.com.sofka.crud.services.ListService;
-import co.com.sofka.crud.services.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,17 +15,17 @@ public class ListController {
     private ListService service;
 
     @GetMapping(value = "/list")
-    public Iterable<ListEntity> list(){
+    public Iterable<ListDTO> list() {
         return this.service.list();
     }
 
     @PostMapping(value = "/list")
-    public ListEntity save(@RequestBody ListEntity todo){
-        return this.service.save(todo);
+    public ListEntity save(@RequestBody ListEntity list){
+        return this.service.save(list);
     }
 
     @DeleteMapping(value = "/list/{id}")
-    public void delete(@PathVariable("id") Integer id){
+    public void delete(@PathVariable("id") String id){
         service.delete(id);
     }
 }

@@ -11,20 +11,19 @@ public class TodoService {
     @Autowired
     private TodoRepository repository;
 
-    public Iterable<TodoEntity> list(){
-        return this.repository.findAll();
-    }
-
     public TodoEntity save(TodoEntity todo){
         return this.repository.save(todo);
     }
 
-    public void delete(Long id){
+    public void delete(String id){
         this.repository.delete(get(id));
     }
 
-    public TodoEntity get(Long id){
+    public TodoEntity get(String id){
          return this.repository.findById(id).orElseThrow();
     }
 
+    public Iterable<TodoEntity> getByListId(String listId){
+        return this.repository.findByListId(listId);
+    }
 }
