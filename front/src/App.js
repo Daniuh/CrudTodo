@@ -187,22 +187,3 @@ function reducer(state, action) {
       return state;
   }
 }
-
-const StoreProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  return <Store.Provider value={{ state, dispatch }}>
-    {children}
-  </Store.Provider>
-
-}
-
-function App() {
-  return <StoreProvider>
-    <h3>To-Do List</h3>
-    <Form />
-    <List />
-  </StoreProvider>
-}
-
-export default App;
