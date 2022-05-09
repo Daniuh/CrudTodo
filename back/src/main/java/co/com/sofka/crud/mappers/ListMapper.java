@@ -15,7 +15,7 @@ public class ListMapper {
         todoEntities.forEach(todoEntity -> todoDTOS.add(TodoMapper.toDTO(todoEntity)));
         listDTO.setId(listEntity.getId());
         listDTO.setLabel(listEntity.getLabel());
-        listDTO.setTodoDTO(todoDTOS);
+        listDTO.setTodos(todoDTOS);
         return listDTO;
     }
 
