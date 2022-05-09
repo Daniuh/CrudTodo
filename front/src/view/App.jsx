@@ -1,6 +1,6 @@
 import React from 'react';
 import { StoreProvider } from '../application/store'
-import { Lists } from './Lists';
+import { Lists } from './list/Lists';
 
 export const App = () => {
     return <StoreProvider>

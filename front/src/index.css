@@ -28,7 +28,7 @@ body {
 .list__label {
   position: absolute;
   padding: 5px;
-  bottom: 50%;
+  bottom: calc(100% - 15px);
   background-color:#fff
 }
 

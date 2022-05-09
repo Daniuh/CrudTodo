@@ -122,9 +122,7 @@ const List = () => {
       });
   };
 
-  const decorationDone = {
-    textDecoration: 'line-through'
-  };
+  
   return <div>
     <table >
       <thead>
