@@ -47,3 +47,9 @@ Realizar la siguiente representación donde se tiene TO-Do List agripado en list
 
 ![alt text]( ./todo-list-kata.gif "Demo funcional del ToDo List")
 
+Solución
+
+![Final](https://user-images.githubusercontent.com/88155850/167611288-b58511ec-2d71-4d58-9ab4-9c10ce270bbe.png)
+
+
+
