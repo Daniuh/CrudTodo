@@ -8,20 +8,36 @@ import TODO_ACTIONS from '../../application/actions/todoActions';
 import service from '../../infraestructure/services/todoService';
 
 export const List = ({ item }) => {
-    const { dispatch } = useContext(Store);
+    const { state, dispatch } = useContext(Store);
     const formRef = useRef(null);
-    const [todoName, setTodoName] = useState();
-    
-    const createTodo = (event) => {
-        event.preventDefault();
-        const body = { id: uuidv4(), label: todoName, isCompleted: false, listId: item.id};
+    const todoToUpdate = state.list.todoToUpdate ? state.list.todoToUpdate.label : null
+    const [todoName, setTodoName] = useState(todoToUpdate);
+
+    const createTodo = () => {
+        const body = { id: uuidv4(), label: todoName, isCompleted: false, listId: item.id };
         service.create(body)
             .then(response => response.json())
             .then(response => {
                 dispatch({ type: TODO_ACTIONS.TODO_CREATED, payload: response });
-                formRef.current.reset();
             })
     };
+
+    const sendForm = (event) => {
+        event.preventDefault();
+        if(state.list.todoToUpdate){
+            updateTodo()
+        }else{
+            createTodo()
+        }
+        formRef.current.reset();
+    }
+    
+    const updateTodo = () => {
+        const body = { ...state.list.todoToUpdate, label: todoName }
+        service.update(body)
+            .then(response => response.json())
+            .then(response => dispatch({ type: TODO_ACTIONS.TODO_UPDATED, payload: response }))
+    }
 
     const deleteList = () => {
         listService.delete(item.id)
@@ -39,8 +55,8 @@ export const List = ({ item }) => {
                 <button className='list__button' onClick={deleteList}>Eliminar</button>
             </span>
             <form ref={formRef}>
-                <input type="text" placeholder="Nombre de la lista" onChange={(event) => setTodoName(event.target.value)} />
-                <button className='list__button' onClick={createTodo} >Crear</button>
+                <input type="text" placeholder="Nombre de la lista" defaultValue={todoToUpdate} onChange={(event) => setTodoName(event.target.value)} />
+                <button className='list__button' onClick={sendForm} >{state.list.todoToUpdate ? 'Editar' : 'Crear'}</button>
             </form>
             <table >
                 <thead>
@@ -50,7 +66,7 @@ export const List = ({ item }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {item.todos && item.todos.map((todo) => <Todo key={todo.id} todo = {todo}/>)}
+                    {item.todos && item.todos.map((todo) => <Todo key={todo.id} todo={todo} />)}
                 </tbody>
             </table>
         </div>

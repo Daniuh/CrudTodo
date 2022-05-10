@@ -4,6 +4,7 @@ import { reducer } from './reducers/reducer'
 const initialState = {
   list: {
     items: [],
+    todoToUpdated: {}
   }
 };
 

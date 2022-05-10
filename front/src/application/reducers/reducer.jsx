@@ -8,6 +8,8 @@ export const reducer = (state, action) => {
         [LIST_ACTIONS.LIST_CREATED]: listCreated.bind(this),
         [TODO_ACTIONS.TODO_CREATED]: todoCreated.bind(this),
         [TODO_ACTIONS.TODO_DELETED]: todoDeleted.bind(this),
+        [TODO_ACTIONS.TODO_UPDATED]: todoUpdated.bind(this),
+        [TODO_ACTIONS.TODO_TO_UPDATE_SET_UP]: todoToUpdateSetUp.bind(this),
     }
 
     return actions[action.type](state, action.payload);
@@ -35,11 +37,20 @@ const todoDeleted = (state, payload) => {
 };
 
 const todoCreated = (state, payload) => {
-    console.log(payload);
     const item = state.list.items.find(item => item.id === payload.listId);
-    console.log(item);
     const items = state.list.items.filter(item => item.id !== payload.listId);
     const newItem = {...item, todos:[...item.todos, payload]}
     return { ...state, list: { items: [...items, newItem] } };
 };
 
+const todoUpdated = (state, payload) => {
+    const item = state.list.items.find(item => item.id === payload.listId);
+    const items = state.list.items.filter(item => item.id !== payload.listId);
+    const todos = item.todos.filter(todo => todo.id !== payload.id);
+    const newItem = {...item, todos:[...todos, payload]}
+    return { ...state, list: { items: [...items, newItem] } };
+};
+
+const todoToUpdateSetUp = (state, payload) => {
+    return { ...state, list: { ...state.list, todoToUpdate: payload}}
+}

@@ -16,13 +16,20 @@ export const Todo = ({ todo }) => {
     };
 
     const updateTodo = () => {
-        todoService.update()
+        dispatch({ type: TODO_ACTIONS.TODO_TO_UPDATE_SET_UP, payload: todo})
     };
+
+    const updateIsCompleted = (event) => {
+        const body = {...todo, isCompleted: event.target.checked}
+        todoService.update(body)
+        .then(response => response.json())
+        .then(response => dispatch({type: TODO_ACTIONS.TODO_UPDATED, payload: response}))
+    }
 
     return (
         <tr style={todo.isCompleted ? decorationDone : {}}>
             <td>{todo.label}</td>
-            <td><input type="checkbox" defaultChecked={todo.isCompleted}></input></td>
+            <td><input type="checkbox" defaultChecked={todo.isCompleted} onChange={updateIsCompleted}></input></td>
             <td><button onClick={deleteTodo}>Eliminar</button></td>
             <td><button onClick={updateTodo}>Editar</button></td>
         </tr>
