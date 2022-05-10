@@ -4,7 +4,9 @@ import { Lists } from './list/Lists';
 
 export const App = () => {
     return <StoreProvider>
-        <h3>Trabajo final</h3>
+        <center>
+            <h1>Trabajo final</h1><br />
+        </center>
         <Lists />
     </StoreProvider>
 }

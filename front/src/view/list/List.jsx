@@ -24,14 +24,14 @@ export const List = ({ item }) => {
 
     const sendForm = (event) => {
         event.preventDefault();
-        if(state.list.todoToUpdate){
+        if (state.list.todoToUpdate) {
             updateTodo()
-        }else{
+        } else {
             createTodo()
         }
         formRef.current.reset();
     }
-    
+
     const updateTodo = () => {
         const body = { ...state.list.todoToUpdate, label: todoName }
         service.update(body)
@@ -55,8 +55,8 @@ export const List = ({ item }) => {
                 <button className='list__button' onClick={deleteList}>Eliminar</button>
             </span>
             <form ref={formRef}>
-                <input type="text" placeholder="Nombre de la lista" defaultValue={todoToUpdate} onChange={(event) => setTodoName(event.target.value)} />
-                <button className='list__button' onClick={sendForm} >{state.list.todoToUpdate ? 'Editar' : 'Crear'}</button>
+                    <input type="text" className="input_sub_tarea" placeholder="Nombre de la sub-tarea" defaultValue={todoToUpdate} onChange={(event) => setTodoName(event.target.value)} />
+                    <button className='list__button' onClick={sendForm} >{state.list.todoToUpdate ? 'Editar' : 'Crear'}</button>
             </form>
             <table >
                 <thead>

@@ -16,25 +16,26 @@ body {
   margin: 45px;
   display: flex;
   gap: 20px;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .list {
   position: relative;
-  border: 1px solid #c3c3c3c3;
+  border: 1px solid #000000c3;
   padding: 15px;
+  border-radius: 5px;
 }
 
 .list__label {
   position: absolute;
   padding: 5px;
   bottom: calc(100% - 15px);
-  background-color:#fff
+  background-color:rgb(255, 255, 255)
 }
 
 .list__button {
-  background-color: #c3c3c3c3;
-  border: 1px solid #bababac3;
+  background-color: #799279c3;
+  border: 1px solid #000000c3;
   outline: none;
   border-radius: 5px;
   margin-left: 5px;
@@ -44,5 +45,16 @@ body {
 }
 
 .list__button:hover {
-  background-color: #a6a6a6c3;
+  background-color: #7bbc7dc3;
+}
+
+.input_sub_tarea{
+  border: 1px solid #000000c3;
+  border-radius: 4px;
+}
+
+.input_tarea{
+  border: 1px solid #000000c3;
+  border-radius: 4px;
+  margin-left: 850px; 
 }

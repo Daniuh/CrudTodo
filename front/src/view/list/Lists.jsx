@@ -28,7 +28,10 @@ export const Lists = () => {
     return (
         <>
             <form ref={formRef}>
-                <input type="text" placeholder="Nombre de la lista" onChange={(event) => setListName(event.target.value)} />
+                <input type="text"
+                className="input_tarea"
+                    placeholder="Nombre de la lista"
+                    onChange={(event) => setListName(event.target.value)} />
                 <button className='list__button' onClick={createList} >Crear</button>
             </form>
             <div className='lists'>
